@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1 style="color: red;">Colour Pallete Giver</h1>
+        <h2>Upload Image:</h2>
+        <form action="/upload_file" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+        {% if filename %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" style="max-width: 500px; max-height: 500px;">
+    </div>
+    <div>
+        <h2>Colour Palettes:</h2>
+        {% for pallete in palletes %}
+        <ul>{{ pallete }}<p style="height: 50px; width: 50px; background-color: RGBA({{pallete[0]}},{{pallete[1]}},{{pallete[2]}});"></p></ul>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
